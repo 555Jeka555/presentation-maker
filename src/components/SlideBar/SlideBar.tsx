@@ -5,13 +5,20 @@ import Menu from "../common/Menu/Menu.tsx";
 import SlidePreview from "../SlidePreview/SlidePreview.tsx";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
 import classes from "./SlideBar.module.css";
+import { useDragAndDropSlide } from "../../hooks/useDragAndDropSlide.ts";
 
 function SlideBar() {
   const [positionMouse, setPositionMouse] = useState({ x: 0, y: 0 });
   const [opened, setOpened] = useState(false);
   const presentation = useAppSelector(state => state.presentation);
   const previewSlides = useAppSelector(state => state.presentation.slides);
-  const { createCreateSlideAction, createDeleteSlideAction, createUpdateSlidesAction } = useAppActions();
+  const {
+    createCreateSlideAction,
+    createDeleteSlideAction,
+    createUpdateSlidesAction,
+    createChangeOrderAction,
+    createSetCurrentSlide,
+  } = useAppActions();
 
   const dragged = useRef<number>(0);
   const draggedOver = useRef<number>(0);
@@ -56,19 +63,17 @@ function SlideBar() {
     },
   ];
 
+  const { registerDndItem } = useDragAndDropSlide({
+    onOrderChange: (from, to) => {
+      createChangeOrderAction(from, to);
+      createSetCurrentSlide(to);
+    },
+  });
   return (
     <div onContextMenu={handleRightClickSlideBar} className={classes["slide-bar"]}>
       {previewSlides.length > 0 &&
         previewSlides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={classes.element}
-            draggable
-            onDragStart={() => (dragged.current = index)}
-            onDragEnd={handleSort}
-            onDragEnter={() => (draggedOver.current = index)}
-            onDragOver={event => event.preventDefault()}
-          >
+          <div key={slide.id} className={classes.element}>
             <div className={classes.index}>{index + 1}</div>
             <div className={classes.wrapper}>
               <SlidePreview slide={slide} className={classes.slide} />
