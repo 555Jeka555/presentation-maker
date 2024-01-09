@@ -1,13 +1,31 @@
-import { correctionMenu, fileMenu } from "../../../constants/MenuBar.ts";
 import Input from "../Input/Input.tsx";
 import MenuButton from "../MenuButton/MenuButton.tsx";
 import classes from "./MenuBar.module.css";
+import { Menu, MenuElement } from "../../../types/types.ts";
+import { v4 as uuidv4 } from "uuid";
+import { exportPdf } from "../../../utils/FileHandler.ts";
+import { useAppSelector } from "../../../store/hooks.ts";
 
 type MenuBarProps = {
   presentationName: string;
 };
 
 function MenuBar({ presentationName }: MenuBarProps) {
+  const presentation = useAppSelector(state => state.presentation);
+
+  const fileMenuElements: MenuElement[] = [
+    {
+      id: uuidv4(),
+      text: "Экспортировать в PDF",
+      onClick: () => {
+        exportPdf(presentation.name, presentation.slides);
+      },
+    },
+  ];
+  const fileMenu: Menu = {
+    menuElements: fileMenuElements,
+  };
+
   return (
     <div className={classes.menu}>
       <img className={classes["main-icon"]} alt={"main-icon"} src={"presentation_icon.png"} />
@@ -15,7 +33,7 @@ function MenuBar({ presentationName }: MenuBarProps) {
         <Input className={classes["presentation-input"]} defaultValue={presentationName} />
         <div className={classes.buttons}>
           <MenuButton label={"Файл"} menu={fileMenu} />
-          <MenuButton label={"Правка"} menu={correctionMenu} />
+          {/*<MenuButton label={"Правка"} menu={correctionMenu} />*/}
         </div>
       </div>
     </div>

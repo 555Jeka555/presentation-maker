@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 
 export function useOutsideClick(
   elementRef: React.MutableRefObject<null | HTMLDivElement>,
@@ -10,10 +10,10 @@ export function useOutsideClick(
   useEffect(() => {
     if (!attached) return;
 
-    const handleClick = () => {
+    const handleClick = (event: MouseEvent) => {
       if (!elementRef) return;
 
-      if (elementRef.current) {
+      if (elementRef.current && elementRef.current?.parentElement?.firstChild !== event.target) {
         latestHandler.current();
       }
     };

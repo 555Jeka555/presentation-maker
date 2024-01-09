@@ -14,7 +14,7 @@ function Presentation({ setIsSlideShow }: SlideShowProps) {
   const handleKeyPress = (event: KeyboardEvent) => {
     const enterKey = event.key;
 
-    if (enterKey === "F2") {
+    if (enterKey === "F2" || enterKey === "Escape") {
       createChangeSlideShowModeAction();
       setIsSlideShow(presentation.isSlideShow);
     } else if (enterKey === "ArrowDown") {

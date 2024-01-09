@@ -53,7 +53,7 @@ function SlidePreview({ slide, className }: SlideProps) {
   }, [presentation]);
 
   return (
-    <div>
+    <div id={slide.id}>
       <div
         className={classNames(classes.slide, className, isSelect ? classes.select : "")}
         style={style}
