@@ -25,6 +25,8 @@ export enum Actions {
   CHANGE_SLIDE_SHOW_MODE = "CHANGE_SLIDE_SHOW_MODE",
   SHOW_PREV_SLIDE = "SHOW_PREV_SLIDE",
   SHOW_NEXT_SLIDE = "SHOW_NEXT_SLIDE",
+  UNDO = "UNDO",
+  REDO = "REDO",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -162,6 +164,14 @@ export type ShowNextSlideAction = {
   type: Actions.SHOW_NEXT_SLIDE;
 };
 
+export type UndoAction = {
+  type: Actions.UNDO;
+};
+
+export type RedoAction = {
+  type: Actions.REDO;
+};
+
 export type Action =
   | ChangeTitleAction
   | FocusPrimitiveAction
@@ -186,4 +196,6 @@ export type Action =
   | ChangeSizeAction
   | ChangeSlideShowModeAction
   | ShowPrevSlideAction
-  | ShowNextSlideAction;
+  | ShowNextSlideAction
+  | UndoAction
+  | RedoAction;

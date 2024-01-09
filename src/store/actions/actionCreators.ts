@@ -19,11 +19,13 @@ import {
   DeleteSlideAction,
   FocusPrimitiveAction,
   MovePrimitivesAction,
+  RedoAction,
   SelectOneSlideAction,
   SelectPrimitiveAction,
   SelectSlideAction,
   ShowNextSlideAction,
   ShowPrevSlideAction,
+  UndoAction,
   UpdateSlidesAction,
 } from "./actions.ts";
 
@@ -207,5 +209,17 @@ export function createShowPrevSlideAction(): ShowPrevSlideAction {
 export function createShowNextSlideAction(): ShowNextSlideAction {
   return {
     type: Actions.SHOW_NEXT_SLIDE,
+  };
+}
+
+export function createUndoAction(): UndoAction {
+  return {
+    type: Actions.UNDO,
+  };
+}
+
+export function createRedoAction(): RedoAction {
+  return {
+    type: Actions.REDO,
   };
 }

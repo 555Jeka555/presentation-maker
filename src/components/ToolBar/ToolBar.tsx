@@ -14,6 +14,8 @@ function ToolBar() {
     createChangeBoldTextAction,
     createChangeItalicTextAction,
     createChangeUnderlineTextAction,
+    createUndoAction,
+    createRedoAction,
   } = useAppActions();
 
   const handleOnClickText = () => {
@@ -22,9 +24,18 @@ function ToolBar() {
 
   return (
     <div className={classes["tool-bar"]}>
-      <Button icon={"undo"} />
-      <Button icon={"redo"} />
-      <Button text={"Тема"} />
+      <Button
+        icon={"undo"}
+        onClick={() => {
+          createUndoAction();
+        }}
+      />
+      <Button
+        icon={"redo"}
+        onClick={() => {
+          createRedoAction();
+        }}
+      />
       <MenuButtonPrimitives />
       <Button
         icon={"insert_text"}

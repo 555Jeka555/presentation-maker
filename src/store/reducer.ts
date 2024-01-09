@@ -1,5 +1,6 @@
 import { Reducer } from "redux";
 import { v4 as uuidv4 } from "uuid";
+import { createHistory } from "../utils/History.ts";
 import {
   Block,
   Color,
@@ -23,13 +24,18 @@ const initialPresentation: Presentation = {
   isSlideShow: false,
 };
 
+const history = createHistory<Presentation>(initialPresentation);
+
 export const reducer: Reducer<Presentation, Action> = (state = initialPresentation, action) => {
   switch (action.type) {
     case Actions.CHANGE_NAME: {
-      return {
+      const newState = {
         ...state,
         name: action.payload.newName,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CREATE_SLIDE: {
       const backgroundSlide: Color = "#fff";
@@ -41,12 +47,15 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         selectObjects: [],
       };
 
-      return {
+      const newState = {
         ...state,
         slides: [...state.slides, newSLide],
         currentSlide: newSLide,
         selectSlides: [newSLide],
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.DELETE_SLIDES: {
       state.slides = state.slides.filter(slide => !state.selectSlides.includes(slide));
@@ -58,14 +67,18 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         state.currentSlide = null;
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.UPDATE_SLIDE: {
-      console.log(state.slides);
-      console.log(action.payload.slides);
-      return { ...state, slides: [...action.payload.slides] };
+      const newState = { ...state, slides: [...action.payload.slides] };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.SELECT_SLIDE: {
       if (
@@ -79,9 +92,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         state.selectSlides = state.selectSlides.filter(selectSlide => selectSlide !== action.payload.slide);
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.SELECT_ONE_SLIDE: {
       return { ...state, currentSlide: action.payload.slide, selectSlides: [action.payload.slide] };
@@ -191,19 +207,25 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.FOCUS_PRIMITIVE: {
-      return {
+      const newState = {
         ...state,
         currentSlide:
           state.currentSlide === null ? null : { ...state.currentSlide, selectObjects: [action.payload.object] },
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.MOVE_PRIMITIVES: {
-      return {
+      const newState = {
         ...state,
         currentSlide:
           state.currentSlide === null
@@ -250,6 +272,9 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
                 }),
               ],
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.SELECT_PRIMITIVE: {
       state.currentSlide?.objects.map(object => {
@@ -264,9 +289,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_TEXT: {
       const setSizeTextBlock = (objectText: TText, type: "enter" | "newLine" | "del"): void => {
@@ -294,9 +322,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.DELETE_PRIMITIVE: {
       if (state.currentSlide !== null) {
@@ -307,9 +338,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         state.currentSlide.selectObjects = [];
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_ITALIC_TEXT: {
       state.currentSlide?.selectObjects.map(object => {
@@ -318,9 +352,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_BOLD_TEXT: {
       state.currentSlide?.selectObjects.map(object => {
@@ -329,9 +366,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_UNDERLINE_TEXT: {
       state.currentSlide?.selectObjects.map(object => {
@@ -340,9 +380,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_SIZE_TEXT: {
       const setSizeObjectText = (objectText: TText, oldFontSize: number): TText => {
@@ -364,22 +407,28 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
           const oldFontSize: number = object.data.fontSize;
 
           object.data.fontSize = action.payload.size;
-          object = setSizeObjectText(object, oldFontSize);
+          setSizeObjectText(object, oldFontSize);
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_BACKGROUND_PICTURE: {
       if (state.currentSlide) {
         state.currentSlide.background = action.payload.src;
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_COLOR: {
       if (state.currentSlide?.selectObjects.length === 0) {
@@ -392,9 +441,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         });
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHAN0E_FONT_FAMILY: {
       state.currentSlide?.selectObjects.map(object => {
@@ -403,9 +455,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_ROTATION: {
       state.currentSlide?.selectObjects.map(object => {
@@ -416,9 +471,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_SIZE: {
       state.currentSlide?.selectObjects.map(object => {
@@ -431,9 +489,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       });
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.CHANGE_SLIDE_SHOW_MODE: {
       state.isSlideShow = !state.isSlideShow;
@@ -443,9 +504,12 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         state.selectSlides = [state.currentSlide];
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      history.addHistoryItem(newState);
+      return newState;
     }
     case Actions.SHOW_PREV_SLIDE: {
       if (state.currentSlide) {
@@ -455,9 +519,11 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      return newState;
     }
     case Actions.SHOW_NEXT_SLIDE: {
       if (state.currentSlide) {
@@ -467,9 +533,25 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
         }
       }
 
-      return {
+      const newState = {
         ...state,
       };
+
+      return newState;
+    }
+    case Actions.UNDO: {
+      const prevState = history.undo();
+      if (prevState) {
+        return prevState;
+      }
+      return state;
+    }
+    case Actions.REDO: {
+      const nextState = history.redo();
+      if (nextState) {
+        return nextState;
+      }
+      return state;
     }
     default: {
       return state;
