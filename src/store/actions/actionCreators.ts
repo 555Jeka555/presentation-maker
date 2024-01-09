@@ -9,6 +9,7 @@ import {
   ChangeRotationAction,
   ChangeSizeAction,
   ChangeSizeTextAction,
+  ChangeSlideShowMode,
   ChangeTextAction,
   ChangeTitleAction,
   ChangeUnderlineAction,
@@ -186,5 +187,11 @@ export function createChangeSizeAction(size: "up" | "down"): ChangeSizeAction {
     payload: {
       size,
     },
+  };
+}
+
+export function createChangeSlideShowModeAction(): ChangeSlideShowMode {
+  return {
+    type: Actions.CHANGE_SLIDE_SHOW_MODE,
   };
 }

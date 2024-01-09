@@ -22,6 +22,7 @@ export enum Actions {
   CHANGE_ROTATION = "CHANGE_ROTATION",
   FOCUS_PRIMITIVE = "FOCUS_PRIMITIVE",
   CHANGE_SIZE = "CHANGE_SIZE",
+  CHANGE_SLIDE_SHOW_MODE = "CHANGE_SLIDE_SHOW_MODE",
 }
 
 export type ChangeTitleAction = { type: Actions.CHANGE_NAME; payload: { newName: string } };
@@ -147,6 +148,10 @@ export type ChangeSizeAction = {
   };
 };
 
+export type ChangeSlideShowMode = {
+  type: Actions.CHANGE_SLIDE_SHOW_MODE;
+};
+
 export type Action =
   | ChangeTitleAction
   | FocusPrimitiveAction
@@ -168,4 +173,5 @@ export type Action =
   | MovePrimitivesAction
   | UpdateSlidesAction
   | SelectOneSlideAction
-  | ChangeSizeAction;
+  | ChangeSizeAction
+  | ChangeSlideShowMode;

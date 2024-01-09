@@ -1,6 +1,4 @@
-import SlideBar from "../SlideBar/SlideBar.tsx";
-import Workspace from "../Workspace/Workspace.tsx";
-import classes from "./Editor.module.css";
+import classes from "./SlideShow.module.css";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
 import { useEffect } from "react";
 
@@ -8,7 +6,7 @@ type SlideShowProps = {
   setIsSlideShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function Editor({ setIsSlideShow }: SlideShowProps) {
+function SlideShow({ setIsSlideShow }: SlideShowProps) {
   const presentation = useAppSelector(state => state.presentation);
   const { createChangeSlideShowModeAction } = useAppActions();
   const handleKeyPress = (event: KeyboardEvent) => {
@@ -31,12 +29,7 @@ function Editor({ setIsSlideShow }: SlideShowProps) {
     };
   }, [presentation]);
 
-  return (
-    <div className={classes.editor}>
-      <SlideBar />
-      <Workspace />
-    </div>
-  );
+  return <div className={classes.slide__show}></div>;
 }
 
-export default Editor;
+export default SlideShow;

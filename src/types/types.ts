@@ -83,6 +83,7 @@ type Presentation = {
   currentSlide: Slide | null;
   selectSlides: Slide[];
   slides: Slide[];
+  isSlideShow: boolean;
 };
 
 type Option = {

@@ -20,6 +20,7 @@ const initialPresentation: Presentation = {
   currentSlide: null,
   selectSlides: [],
   slides: [],
+  isSlideShow: false,
 };
 
 export const reducer: Reducer<Presentation, Action> = (state = initialPresentation, action) => {
@@ -429,6 +430,13 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
           object.size.height -= 5;
         }
       });
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.CHANGE_SLIDE_SHOW_MODE: {
+      state.isSlideShow = !state.isSlideShow;
 
       return {
         ...state,

@@ -9,7 +9,6 @@ import classes from "./SlideBar.module.css";
 function SlideBar() {
   const [positionMouse, setPositionMouse] = useState({ x: 0, y: 0 });
   const [opened, setOpened] = useState(false);
-
   const presentation = useAppSelector(state => state.presentation);
   const previewSlides = useAppSelector(state => state.presentation.slides);
   const { createCreateSlideAction, createDeleteSlideAction, createUpdateSlidesAction } = useAppActions();
