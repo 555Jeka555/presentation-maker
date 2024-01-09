@@ -9,7 +9,7 @@ import {
   ChangeRotationAction,
   ChangeSizeAction,
   ChangeSizeTextAction,
-  ChangeSlideShowMode,
+  ChangeSlideShowModeAction,
   ChangeTextAction,
   ChangeTitleAction,
   ChangeUnderlineAction,
@@ -22,6 +22,8 @@ import {
   SelectOneSlideAction,
   SelectPrimitiveAction,
   SelectSlideAction,
+  ShowNextSlideAction,
+  ShowPrevSlideAction,
   UpdateSlidesAction,
 } from "./actions.ts";
 
@@ -190,8 +192,20 @@ export function createChangeSizeAction(size: "up" | "down"): ChangeSizeAction {
   };
 }
 
-export function createChangeSlideShowModeAction(): ChangeSlideShowMode {
+export function createChangeSlideShowModeAction(): ChangeSlideShowModeAction {
   return {
     type: Actions.CHANGE_SLIDE_SHOW_MODE,
+  };
+}
+
+export function createShowPrevSlideAction(): ShowPrevSlideAction {
+  return {
+    type: Actions.SHOW_PREV_SLIDE,
+  };
+}
+
+export function createShowNextSlideAction(): ShowNextSlideAction {
+  return {
+    type: Actions.SHOW_NEXT_SLIDE,
   };
 }

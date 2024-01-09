@@ -437,6 +437,39 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
     }
     case Actions.CHANGE_SLIDE_SHOW_MODE: {
       state.isSlideShow = !state.isSlideShow;
+      state.selectSlides = [];
+      if (state.currentSlide) {
+        state.currentSlide.selectObjects = [];
+        state.selectSlides = [state.currentSlide];
+      }
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.SHOW_PREV_SLIDE: {
+      state.slides.map((_, index) => {
+        const indexPrev = index - 1;
+
+        if (indexPrev >= 0) {
+          state.currentSlide = state.slides[indexPrev];
+          return;
+        }
+      });
+
+      return {
+        ...state,
+      };
+    }
+    case Actions.SHOW_NEXT_SLIDE: {
+      state.slides.map((_, index) => {
+        const indexNext = index + 1;
+
+        if (indexNext <= state.slides.length - 1) {
+          state.currentSlide = state.slides[indexNext];
+          return;
+        }
+      });
 
       return {
         ...state,

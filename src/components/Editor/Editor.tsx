@@ -9,8 +9,8 @@ type SlideShowProps = {
 };
 
 function Editor({ setIsSlideShow }: SlideShowProps) {
-  const presentation = useAppSelector(state => state.presentation);
   const { createChangeSlideShowModeAction } = useAppActions();
+  const presentation = useAppSelector(state => state.presentation);
   const handleKeyPress = (event: KeyboardEvent) => {
     const enterKey = event.key;
     if (event.target.value !== undefined) {

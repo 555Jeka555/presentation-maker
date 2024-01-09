@@ -1,6 +1,7 @@
 import classes from "./SlideShow.module.css";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Slide from "../Slide/Slide.tsx";
 
 type SlideShowProps = {
   setIsSlideShow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,7 +9,8 @@ type SlideShowProps = {
 
 function SlideShow({ setIsSlideShow }: SlideShowProps) {
   const presentation = useAppSelector(state => state.presentation);
-  const { createChangeSlideShowModeAction } = useAppActions();
+  const { createChangeSlideShowModeAction, createShowPrevSlideAction, createShowNextSlideAction } = useAppActions();
+  const [currentSlide, setCurrentSlide] = useState(presentation.currentSlide);
   const handleKeyPress = (event: KeyboardEvent) => {
     const enterKey = event.key;
     if (event.target.value !== undefined) {
@@ -18,6 +20,12 @@ function SlideShow({ setIsSlideShow }: SlideShowProps) {
     if (enterKey === "F2") {
       createChangeSlideShowModeAction();
       setIsSlideShow(presentation.isSlideShow);
+    } else if (enterKey === "ArrowDown") {
+      createShowNextSlideAction();
+      setCurrentSlide(presentation.currentSlide);
+    } else if (enterKey === "ArrowUp") {
+      createShowPrevSlideAction();
+      setCurrentSlide(presentation.currentSlide);
     }
   };
 
@@ -29,7 +37,7 @@ function SlideShow({ setIsSlideShow }: SlideShowProps) {
     };
   }, [presentation]);
 
-  return <div className={classes.slide__show}></div>;
+  return <div className={classes.slide__show}>{currentSlide ? <Slide slide={currentSlide} /> : <div></div>}</div>;
 }
 
 export default SlideShow;
