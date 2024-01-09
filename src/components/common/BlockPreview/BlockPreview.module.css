@@ -1,0 +1,8 @@
+.block {
+  position: absolute;
+}
+
+.select {
+  box-shadow: 0 0 20px #000;
+  outline: 3px solid #00f;
+}

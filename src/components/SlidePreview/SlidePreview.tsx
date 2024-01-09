@@ -4,6 +4,7 @@ import Block from "../common/Block/Block.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
 import classes from "./SlidePreview.module.css";
+import BlockPreview from "../common/BlockPreview/BlockPreview.tsx";
 
 type SlideProps = {
   slide: TSlide;
@@ -59,7 +60,7 @@ function SlidePreview({ slide, className }: SlideProps) {
         onClick={handleLeftClickSlide}
       >
         {slide.objects.map(object => (
-          <Block key={object.id} object={object} isWorkSpace={false} />
+          <BlockPreview key={object.id} object={object} isWorkSpace={false} />
         ))}
       </div>
     </div>
