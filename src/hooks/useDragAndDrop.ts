@@ -40,13 +40,11 @@ function useDragAndDrop(id: string) {
     target.addEventListener("mousedown", onMouseDown);
     target.addEventListener("mouseup", onMouseUp);
     container.addEventListener("mousemove", onMouseMove);
-    container.addEventListener("mouseleave", onMouseUp);
 
     return () => {
       target.removeEventListener("mousedown", onMouseDown);
       target.removeEventListener("mouseup", onMouseUp);
       container.removeEventListener("mousemove", onMouseMove);
-      container.removeEventListener("mouseleave", onMouseUp);
     };
   }, [id]);
 }
