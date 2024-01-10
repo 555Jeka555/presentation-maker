@@ -1,4 +1,4 @@
-import { CSSProperties, MouseEvent, useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { Image as TImage, Primitive as TPrimitive, Text as TText } from "../../../types/types.ts";
 import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
 import Image from "../Image/Image.tsx";
@@ -17,7 +17,6 @@ function Block({ object, isWorkSpace }: BlockProps) {
   const [isSelect, setIsSelect] = useState(false);
 
   const {
-    createSelectPrimitiveAction,
     createChangeTextAction,
     createDeletePrimitiveAction,
     createChangeRotationAction,
@@ -25,12 +24,8 @@ function Block({ object, isWorkSpace }: BlockProps) {
     createChangeSizeAction,
   } = useAppActions();
 
-  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.ctrlKey) {
-      createSelectPrimitiveAction(object);
-    } else {
-      createFocusPrimitiveAction(object);
-    }
+  const handleClick = () => {
+    createFocusPrimitiveAction(object);
   };
 
   useDragAndDrop(`${object.id}-workspace`);

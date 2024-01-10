@@ -33,7 +33,8 @@ export type CreateSlideAction = {
 export type MovePrimitivesAction = {
   type: Actions.MOVE_PRIMITIVES;
   payload: {
-    delta: Position;
+    id: string;
+    position: Position;
   };
 };
 

@@ -210,15 +210,10 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
             : {
                 ...state.currentSlide,
                 objects: [
-                  ...state.currentSlide.objects.filter(
-                    object => !state.currentSlide?.selectObjects.some(ob => ob.id === object.id)
-                  ),
+                  ...state.currentSlide.objects.filter(object => `${object.id}-workspace` !== action.payload.id),
                   ...state.currentSlide.selectObjects.map(object => ({
                     ...object,
-                    position: {
-                      x: object.position.x + action.payload.delta.x,
-                      y: object.position.y + action.payload.delta.y,
-                    },
+                    position: { x: action.payload.position.x, y: action.payload.position.y },
                   })),
                 ],
               },
@@ -231,15 +226,10 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
                     return {
                       ...state.currentSlide,
                       objects: [
-                        ...state.currentSlide.objects.filter(
-                          object => !state.currentSlide?.selectObjects.some(ob => ob.id === object.id)
-                        ),
+                        ...state.currentSlide.objects.filter(object => `${object.id}-workspace` !== action.payload.id),
                         ...state.currentSlide.selectObjects.map(object => ({
                           ...object,
-                          position: {
-                            x: object.position.x + action.payload.delta.x,
-                            y: object.position.y + action.payload.delta.y,
-                          },
+                          position: { x: action.payload.position.x, y: action.payload.position.y },
                         })),
                       ],
                     };
@@ -248,23 +238,6 @@ export const reducer: Reducer<Presentation, Action> = (state = initialPresentati
                   }
                 }),
               ],
-      };
-    }
-    case Actions.SELECT_PRIMITIVE: {
-      state.currentSlide?.objects.map(object => {
-        if (object === action.payload.object && !state.currentSlide?.selectObjects.includes(object)) {
-          state.currentSlide?.selectObjects.push(object);
-        } else if (object === action.payload.object && state.currentSlide?.selectObjects.includes(object)) {
-          if (state.currentSlide !== null) {
-            state.currentSlide.selectObjects = state.currentSlide.selectObjects.filter(object => {
-              return object !== action.payload.object;
-            });
-          }
-        }
-      });
-
-      return {
-        ...state,
       };
     }
     case Actions.CHANGE_TEXT: {

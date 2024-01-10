@@ -91,12 +91,10 @@ export function createFocusPrimitiveAction(object: Text | Image | Primitive): Fo
   };
 }
 
-export function createMovePrimitivesAction(delta: Position): MovePrimitivesAction {
+export function createMovePrimitivesAction(id: string, position: Position): MovePrimitivesAction {
   return {
     type: Actions.MOVE_PRIMITIVES,
-    payload: {
-      delta,
-    },
+    payload: { id, position },
   };
 }
 

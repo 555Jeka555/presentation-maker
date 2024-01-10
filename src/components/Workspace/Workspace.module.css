@@ -1,16 +1,15 @@
 .workspace {
   display: flex;
-  flex: 1;
   margin: 30px 200px;
 }
 
 .new-slide {
+  position: absolute;
   display: flex;
-  height: 0;
-  flex: 1;
+  width: calc(1366px * 0.6);
+  height: calc(768px * 0.6);
   align-items: center;
   justify-content: center;
-  padding: 28% 0;
   border: 2px dashed #999;
   border-radius: 15px;
   background: none;

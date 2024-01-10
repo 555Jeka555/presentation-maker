@@ -22,10 +22,7 @@ function useDragAndDrop(id: string) {
 
     const onMouseUp = () => {
       isClicked.current = false;
-      createMovePrimitivesAction({
-        x: target.offsetLeft - coords.current.lastX,
-        y: target.offsetTop - coords.current.lastY,
-      });
+      createMovePrimitivesAction(id, { x: target.offsetLeft, y: target.offsetTop });
       coords.current.lastX = target.offsetLeft;
       coords.current.lastY = target.offsetTop;
     };
