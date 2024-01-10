@@ -7,14 +7,13 @@
   background-color: #edf2fa;
 }
 
-.font-size-input {
+.size-shrift-input {
   display: flex;
-  width: 28px;
+  width: 32px;
   height: 28px;
   align-items: center;
   justify-content: center;
   padding: 5px;
-  border: none;
   border-radius: 4px;
   margin: 5px 1px;
   background: none;

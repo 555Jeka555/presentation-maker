@@ -1,7 +1,7 @@
-.primitives {
+.body {
   position: absolute;
   z-index: 1;
-  left: 11.8vh;
+  left: 15.5vh;
   display: flex;
   border-radius: 4px;
   background-color: #edf2fa;

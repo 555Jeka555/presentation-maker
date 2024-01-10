@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { Size } from "../../../types/types";
+import { Size } from "../../../types/types.ts";
 
 type ImageProps = {
   data: {

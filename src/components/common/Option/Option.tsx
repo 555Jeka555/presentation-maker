@@ -1,14 +1,18 @@
+import { CSSProperties } from "react";
 import { Option } from "../../../types/types.ts";
 import classes from "./Option.module.css";
 
 type OptionProps = {
   option: Option;
-  font?: string;
 };
 
 function Option({ option }: OptionProps) {
+  const style: CSSProperties = {
+    fontFamily: option.value,
+  };
+
   return (
-    <option className={classes["font-option"]} value={option.value}>
+    <option style={style} className={classes.option} value={option.value}>
       {option.label}
     </option>
   );

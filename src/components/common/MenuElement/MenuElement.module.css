@@ -1,4 +1,4 @@
-.element {
+.body {
   display: flex;
   width: 200px;
   flex-direction: row;
@@ -9,6 +9,6 @@
     sans-serif;
 }
 
-.element:hover {
+.body:hover {
   background: #44474614;
 }

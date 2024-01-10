@@ -1,32 +1,38 @@
-import Block from "../common/Block/Block.tsx";
-import { CSSProperties } from "react";
-import { Slide as TSlide } from "../../types/types.ts";
+import { CSSProperties, useEffect, useState } from "react";
 import classNames from "classnames";
+import Block from "../common/Block/Block.tsx";
+import { Slide as TSlide } from "../../types/types.ts";
+import { useAppSelector } from "../../store/hooks.ts";
 import classes from "./Slide.module.css";
 
 type SlideProps = {
   slide: TSlide;
-  isSelectedSlide: boolean;
   className?: string;
 };
 
-function Slide({ slide, isSelectedSlide, className }: SlideProps) {
+function Slide({ slide, className }: SlideProps) {
+  const presentation = useAppSelector(state => state.presentation);
+  const [background, setBackground] = useState(slide.background);
+
   const style: CSSProperties = {
-    background: slide.background,
+    background: background,
   };
 
-  let classSlideSelect: string = "";
-  if (isSelectedSlide) {
-    classSlideSelect = classes.select;
-  }
+  useEffect(() => {
+    if (presentation.currentSlide) {
+      if (presentation.currentSlide.background[0] === "#") {
+        setBackground(presentation.currentSlide.background);
+      } else {
+        const image = `url(${presentation.currentSlide.background})`;
+        setBackground(image);
+      }
+    }
+  }, [presentation]);
 
   return (
-    <div
-      className={classNames(classes.slide, className, classSlideSelect)}
-      style={style}
-    >
-      {slide.objects.map((object) => (
-        <Block key={object.id} {...object} />
+    <div className={classNames(classes.slide, className)} style={style}>
+      {slide.objects.map(object => (
+        <Block key={object.id} object={object} isWorkSpace={true}></Block>
       ))}
     </div>
   );

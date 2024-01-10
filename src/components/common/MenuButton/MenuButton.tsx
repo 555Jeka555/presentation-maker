@@ -10,6 +10,7 @@ function MenuButton({ label }: MenuButtonProps) {
   return (
     <div>
       <div className={classes.button}>{label}</div>
+      {/*<Menu menuElements={menu.menuElements} />*/}
     </div>
   );
 }

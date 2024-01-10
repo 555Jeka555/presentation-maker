@@ -1,4 +1,4 @@
-import { Presentation } from "../types";
+import { Presentation } from "../types.ts";
 
 const presentation: Presentation = {
   currentSlide: null,

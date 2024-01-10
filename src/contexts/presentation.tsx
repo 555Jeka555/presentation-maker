@@ -1,5 +1,6 @@
-import { PropsWithChildren, createContext, useState } from "react";
-import { Presentation } from "../types/types";
+import { createContext, PropsWithChildren, useState } from "react";
+import { Presentation } from "../types/types.ts";
+
 type PresentationContextType = {
   presentation: Presentation;
   setPresentation: (newPresentation: Presentation) => void;
@@ -18,7 +19,7 @@ export const PresentationContext = createContext<PresentationContextType>({
 function PresentationProvider({ children }: PropsWithChildren) {
   const [presentation, setPresentation] = useState<Presentation>({
     currentSlide: null,
-    name: "New presentation",
+    name: "",
     selectSlides: [],
     slides: [],
   });

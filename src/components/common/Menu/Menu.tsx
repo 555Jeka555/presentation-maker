@@ -1,17 +1,34 @@
+import { CSSProperties, useRef } from "react";
+import { Menu as TMenu, Position } from "../../../types/types.ts";
 import MenuElement from "../MenuElement/MenuElement.tsx";
-import { Menu as TMenu } from "../../../types/types.ts";
+import { useOutsideClick } from "../../../hooks/useOutsideClick.ts";
 import classes from "./Menu.module.css";
 
-type MenuProps = TMenu;
+type MenuProps = {
+  position: Position;
+  opened: boolean;
+  onClose: () => void;
+} & TMenu;
 
-function Menu({ menuElements }: MenuProps) {
+function Menu({ menuElements, position, opened, onClose }: MenuProps) {
+  const ref = useRef(null);
+
+  useOutsideClick(ref, onClose, opened);
+  if (!opened) return null;
+
+  const positionStyle: CSSProperties = {
+    left: `${position.x}px`,
+    top: `${position.y}px`,
+  };
+
   return (
-    <div className={classes["menu-body"]}>
-      {menuElements.map((menuElement) => (
+    <div ref={ref} className={classes.body} style={positionStyle}>
+      {menuElements.map(menuElement => (
         <MenuElement
           key={menuElement.id}
           text={menuElement.text}
           shortcut={menuElement.shortcut}
+          onClick={menuElement.onClick}
         />
       ))}
     </div>

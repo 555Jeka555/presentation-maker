@@ -1,5 +1,6 @@
 .slide-bar {
   display: flex;
+  min-width: 320px;
   flex-direction: column;
   padding: 20px 20px 20px 0;
   border-right: 1px solid #c4c7c5;
@@ -19,8 +20,8 @@
 }
 
 .wrapper {
-  width: calc(1366px * 0.3);
-  height: calc(768px * 0.3);
+  width: calc(1366px * 0.1);
+  height: calc(768px * 0.2);
   margin-left: 20px;
 }
 

@@ -10,13 +10,9 @@ type MenuBarProps = {
 function MenuBar({ presentationName }: MenuBarProps) {
   return (
     <div className={classes.menu}>
-      <img
-        className={classes["main-icon"]}
-        alt={"main-icon"}
-        src={"presentation_icon.png"}
-      />
+      <img className={classes["main-icon"]} alt={"main-icon"} src={"presentation_icon.png"} />
       <div className={classes["input-buttons"]}>
-        <Input className={classes.input} defaultValue={presentationName} />
+        <Input className={classes["presentation-input"]} defaultValue={presentationName} />
         <div className={classes.buttons}>
           <MenuButton label={"Файл"} menu={fileMenu} />
           <MenuButton label={"Правка"} menu={correctionMenu} />

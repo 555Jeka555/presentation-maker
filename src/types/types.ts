@@ -33,7 +33,13 @@ type Block = {
 type Text = Block & {
   type: "text";
   data: {
-    text: Char[];
+    text: string;
+    fontSize: number;
+    fontFamily: FontFamily;
+    color: Color;
+    bold: boolean;
+    italic: boolean;
+    underlined: boolean;
   };
 };
 
@@ -51,6 +57,7 @@ type Primitive = Block & {
   data: {
     size: Size;
     form: "triangle" | "ellipse" | "rectangle";
+    color: Color;
   };
 };
 
@@ -66,7 +73,7 @@ type History = {
 
 type Slide = {
   id: string;
-  background: Color;
+  background: Color | string;
   selectObjects: Array<Text | Image | Primitive>;
   objects: Array<Text | Image | Primitive>;
 };
@@ -80,12 +87,13 @@ type Presentation = {
 
 type Option = {
   id: string;
-  value: number | string;
+  value: string;
   label: string;
 };
 
 type MenuElement = {
   id: string;
+  onClick: () => void;
   text: string;
   shortcut?: string;
 };

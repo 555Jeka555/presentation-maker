@@ -1,21 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  Char,
-  Color,
-  FontFamily,
-  History,
-  Image,
-  Operation,
-  Position,
-  Presentation,
-  Size,
-  Slide,
-  Text,
-} from "../types";
 import { v4 as uuidv4 } from "uuid";
-
-const fontFamily: FontFamily = "Arial";
+import { Color, History, Image, Operation, Position, Presentation, Size, Slide, Text } from "../types.ts";
 
 const color: Color = "#aaaaaa";
 
@@ -29,20 +15,9 @@ const position: Position = {
   y: 90,
 };
 
-const char: Char = {
-  bold: false,
-  color: color,
-  fontFamily: fontFamily,
-  fontSize: 12,
-  id: uuidv4(),
-  italic: true,
-  underlined: false,
-  value: "A",
-};
-
 const text: Text = {
   data: {
-    text: [char],
+    text: "Текст",
   },
   id: uuidv4(),
   position: position,

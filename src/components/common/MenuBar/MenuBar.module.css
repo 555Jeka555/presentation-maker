@@ -21,13 +21,13 @@
   margin-top: 5px;
 }
 
-.input {
+.presentation-input {
   border: none;
   border-radius: 5px;
   margin: 1px;
 }
 
-.input:hover {
-  border: 1px solid #000000;
+.presentation-input:hover {
+  border: 1px solid #000;
   margin: 0;
 }
