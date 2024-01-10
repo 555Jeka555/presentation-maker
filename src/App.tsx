@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div>
-      {isSlideShow ? (
+      {isSlideShow && presentation.currentSlide ? (
         <Presentation setIsSlideShow={setIsSlideShow} />
       ) : (
         <div className={classes.app}>

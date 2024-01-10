@@ -1,10 +1,10 @@
+import { v4 as uuidv4 } from "uuid";
 import Input from "../Input/Input.tsx";
 import MenuButton from "../MenuButton/MenuButton.tsx";
-import classes from "./MenuBar.module.css";
 import { Menu, MenuElement } from "../../../types/types.ts";
-import { v4 as uuidv4 } from "uuid";
 import { exportPdf } from "../../../utils/FileHandler.ts";
 import { useAppSelector } from "../../../store/hooks.ts";
+import classes from "./MenuBar.module.css";
 
 type MenuBarProps = {
   presentationName: string;

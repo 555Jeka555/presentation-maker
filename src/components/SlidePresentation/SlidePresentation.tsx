@@ -2,8 +2,8 @@ import { CSSProperties, useEffect, useState } from "react";
 import classNames from "classnames";
 import { Slide as TSlide } from "../../types/types.ts";
 import { useAppSelector } from "../../store/hooks.ts";
-import classes from "./SlidePresentation.module.css";
 import BlockPreview from "../common/BlockPreview/BlockPreview.tsx";
+import classes from "./SlidePresentation.module.css";
 
 type SlideProps = {
   slide: TSlide;

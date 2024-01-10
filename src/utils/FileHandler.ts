@@ -1,5 +1,5 @@
-import { Slide } from "../types/types.ts";
 import html2PDF from "jspdf-html2canvas";
+import { Slide } from "../types/types.ts";
 
 export const exportPdf = (presentationName: string, slides: Slide[]) => {
   const divs: HTMLElement[] = [];

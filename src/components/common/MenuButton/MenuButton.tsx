@@ -1,7 +1,7 @@
-import { Menu as TMenu, Position } from "../../../types/types.ts";
-import classes from "./MenuButton.module.css";
-import Menu from "../Menu/Menu.tsx";
 import { useRef, useState } from "react";
+import { Menu as TMenu, Position } from "../../../types/types.ts";
+import Menu from "../Menu/Menu.tsx";
+import classes from "./MenuButton.module.css";
 
 type MenuButtonProps = {
   label: string;

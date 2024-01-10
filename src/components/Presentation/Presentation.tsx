@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
-import classes from "./Presentation.module.css";
 import SlidePresentation from "../SlidePresentation/SlidePresentation.tsx";
+import classes from "./Presentation.module.css";
 
 type SlideShowProps = {
   setIsSlideShow: React.Dispatch<React.SetStateAction<boolean>>;
