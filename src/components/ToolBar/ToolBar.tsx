@@ -37,24 +37,9 @@ function ToolBar() {
       <InputColor icon={"palette"} />
       <Select options={fontOptions} className={classes["font-select"]} />
       <InputFontSize defaultValue={11} className={classes["size-shrift-input"]} />
-      <Button
-        onClick={() => {
-          createChangeBoldTextAction();
-        }}
-        icon={"format_bold"}
-      />
-      <Button
-        onClick={() => {
-          createChangeItalicTextAction();
-        }}
-        icon={"format_italic"}
-      />
-      <Button
-        onClick={() => {
-          createChangeUnderlineTextAction();
-        }}
-        icon={"format_underlined"}
-      />
+      <Button onClick={createChangeBoldTextAction} icon={"format_bold"} />
+      <Button onClick={createChangeItalicTextAction} icon={"format_italic"} />
+      <Button onClick={createChangeUnderlineTextAction} icon={"format_underlined"} />
     </div>
   );
 }

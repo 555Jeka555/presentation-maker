@@ -1,4 +1,4 @@
-import { ChangeEventHandler, MouseEventHandler, useRef } from "react";
+import { ChangeEventHandler, MouseEventHandler, RefObject } from "react";
 import classes from "./Button.module.css";
 
 type ButtonProps = {
@@ -6,7 +6,7 @@ type ButtonProps = {
   icon?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  fileInput?: React.RefObject<HTMLInputElement>;
+  fileInput?: RefObject<HTMLInputElement>;
 };
 
 function Button({ text, icon, onClick, onChange, fileInput }: ButtonProps) {

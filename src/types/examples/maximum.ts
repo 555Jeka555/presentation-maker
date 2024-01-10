@@ -3,6 +3,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { Color, History, Image, Operation, Presentation, Primitive, Size, Slide, Text } from "../types.ts";
 
+
 const color: Color = "#aaaaaa";
 
 const size: Size = {
