@@ -1,5 +1,4 @@
 import React, { CSSProperties, useEffect, useState } from "react";
-import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
 import { useAppActions, useAppSelector } from "../../store/hooks.ts";
@@ -49,12 +48,12 @@ function SlidePreview({ slide, className }: SlideProps) {
     }
 
     return;
-  }, [presentation]);
+  }, [presentation, slide]);
 
   return (
     <div>
       <div
-        className={classNames(classes.slide, className, isSelect ? classes.select : "")}
+        className={`${classes.slide} ${className} ${isSelect ? classes.select : ""}`}
         style={style}
         onClick={handleLeftClickSlide}
       >

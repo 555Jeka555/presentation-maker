@@ -2,14 +2,10 @@ import MenuBar from "../common/MenuBar/MenuBar.tsx";
 import ToolBar from "../ToolBar/ToolBar.tsx";
 import classes from "./Header.module.css";
 
-type HeaderProps = {
-  presentationName: string;
-};
-
-function Header({ presentationName }: HeaderProps) {
+function Header() {
   return (
     <div className={classes.header}>
-      <MenuBar presentationName={presentationName} />
+      <MenuBar />
       <ToolBar />
     </div>
   );

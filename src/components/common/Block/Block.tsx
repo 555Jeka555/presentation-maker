@@ -1,5 +1,4 @@
 import { CSSProperties, MouseEvent, useEffect, useState } from "react";
-import classNames from "classnames";
 import { Image as TImage, Primitive as TPrimitive, Text as TText } from "../../../types/types.ts";
 import useDragAndDrop from "../../../hooks/useDragAndDrop.ts";
 import Image from "../Image/Image.tsx";
@@ -49,11 +48,8 @@ function Block({ object, isWorkSpace }: BlockProps) {
   };
 
   const handleKeyPress = (event: KeyboardEvent) => {
+    if (!isSelect) return;
     const enterKey = event.key;
-    if (event.target.value !== undefined) {
-      return;
-    }
-
     if (object.type === "text") {
       createChangeTextAction(enterKey);
     }
@@ -93,7 +89,7 @@ function Block({ object, isWorkSpace }: BlockProps) {
     <div
       id={`${object.id}${isWorkSpace ? `-workspace` : ``}`}
       onMouseDown={handleClick}
-      className={classNames(classes.block, isSelect ? classes.select : "")}
+      className={`${classes.block} ${isSelect ? classes.select : ""}`}
       style={style}
     >
       {object.type === "image" && <Image data={object.data} />}

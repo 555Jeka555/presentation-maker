@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { Block, Position, Primitive, Size, Presentation as TPresentation } from "../types/types.ts";
+import { Block, Position, Presentation as TPresentation, Primitive, Size } from "../types/types.ts";
 
 export const onClickTriangle = (
   presentation: TPresentation,
@@ -21,6 +21,7 @@ export const onClickTriangle = (
     data: {
       form: "triangle",
       size: defaultSize,
+      color: "#000000",
     },
     id: uuidv4(),
     position: defaultPosition,
@@ -52,6 +53,7 @@ export const onClickRectangle = (
   const triangle: Primitive & Block = {
     data: {
       form: "rectangle",
+      color: "#000000",
       size: defaultSize,
     },
     id: uuidv4(),
@@ -82,6 +84,7 @@ export const onClickEllipse = (
 
   const triangle: Primitive & Block = {
     data: {
+      color: "#000000",
       form: "ellipse",
       size: defaultSize,
     },

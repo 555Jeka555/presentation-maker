@@ -1,9 +1,6 @@
 import { Presentation } from "../types/types";
 
-export const useToolBar = (
-  presentation: Presentation,
-  setPresentation: (newPresentation: Presentation) => void,
-) => {
+export const useToolBar = (presentation: Presentation, setPresentation: (newPresentation: Presentation) => void) => {
   const download = () => {
     const data = JSON.stringify(presentation, null, 2);
     const link = document.createElement("a");
@@ -17,7 +14,7 @@ export const useToolBar = (
     const input = document.createElement("input");
     input.type = "file";
     input.accept = "application/json";
-    input.addEventListener("change", (event) => {
+    input.addEventListener("change", event => {
       const selectedFile = (event.target as HTMLInputElement).files?.[0];
 
       if (selectedFile) {

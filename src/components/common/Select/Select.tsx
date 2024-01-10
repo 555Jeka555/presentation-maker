@@ -11,12 +11,12 @@ type SelectProps = {
 function Select({ className, options }: SelectProps) {
   const { createChangeFontFamilyAction } = useAppActions();
 
-  const handleChooseFontFamily = (event: ChangeEvent): void => {
+  const handleChooseFontFamily = (event: ChangeEvent<HTMLSelectElement>): void => {
     createChangeFontFamilyAction(event.target.value);
   };
 
   return (
-    <select onChange={event => handleChooseFontFamily(event)} className={className}>
+    <select onChange={handleChooseFontFamily} className={className}>
       {options.map(option => (
         <Option key={option.id} option={option} />
       ))}

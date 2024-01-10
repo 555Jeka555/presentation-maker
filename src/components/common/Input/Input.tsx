@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useAppActions } from "../../../store/hooks.ts";
 
 type InputProps = {
@@ -11,13 +11,20 @@ function Input({ defaultValue, placeholder, className }: InputProps) {
   const [value, setValue] = useState(defaultValue);
   const { createChangeTitleAction } = useAppActions();
 
-  const handleOnInput = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleOnInput = (event: ChangeEvent<HTMLInputElement>) => {
     createChangeTitleAction(event.target.value);
+    setValue(event.target.value);
   };
 
   return (
     <div>
-      <input onInput={handleOnInput} className={className} defaultValue={value} placeholder={placeholder} />
+      <input
+        onChange={handleOnInput}
+        value={value}
+        className={className}
+        defaultValue={value}
+        placeholder={placeholder}
+      />
     </div>
   );
 }

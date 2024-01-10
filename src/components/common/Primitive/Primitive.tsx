@@ -1,4 +1,4 @@
-import { Color, Size } from "../../../types/types.ts";
+import { Size } from "../../../types/types.ts";
 
 type PrimitiveProps = {
   data: {

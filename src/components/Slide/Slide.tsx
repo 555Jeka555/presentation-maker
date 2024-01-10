@@ -1,5 +1,4 @@
 import { CSSProperties, useEffect, useState } from "react";
-import classNames from "classnames";
 import Block from "../common/Block/Block.tsx";
 import { Slide as TSlide } from "../../types/types.ts";
 import { useAppSelector } from "../../store/hooks.ts";
@@ -30,7 +29,7 @@ function Slide({ slide, className }: SlideProps) {
   }, [presentation]);
 
   return (
-    <div className={classNames(classes.slide, className)} style={style}>
+    <div className={`${classes.slide} ${className}`} style={style}>
       {slide.objects.map(object => (
         <Block key={object.id} object={object} isWorkSpace={true}></Block>
       ))}
